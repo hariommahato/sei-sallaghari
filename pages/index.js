@@ -7,6 +7,8 @@ import SeiMap from "@/frontend/components/Map";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect, useState } from "react";
+import Loader from "@/frontend/components/Loader/Loader";
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 function MyVerticallyCenteredModal(props) {
@@ -19,17 +21,26 @@ function MyVerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          SEI INSTITUTE
+          SEI INSTITUTE (sallaghari,Bhaktapur)
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Admission For Bridge Course 2080 BS</h4>
-        <p style={{color:"Red"}}>
-          " We want to let you know that our application is currently in the
-          development process, but we are working hard to ensure that it meets
-          your expectations. Please stay with us, and we will keep you updated
-          on our progress.
-        </p>
+        <h4>ADMISSION OPEN FOR BRIDGE COURSE 2080 BS</h4>
+        <p style={{ color: "Red" }}>BOOK YOUR SEAT NOW.......</p>
+        <div>
+          <div>
+            <p>DISCOUNT VALID FROM "CHAITRA 17 - CHAITRA 30" ONLY</p>
+            <ul>
+              <li>A+ Full SCholarship</li>
+              <li>A 50% SCholarship</li>
+              <li>B+ 40% SCholarship</li>
+              <li>B 30% SCholarship</li>
+            </ul>
+          </div>
+          <Button as={Link} href="/enroll">
+            Book Now
+          </Button>
+        </div>
       </Modal.Body>
     </Modal>
   );

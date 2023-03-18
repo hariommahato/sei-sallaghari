@@ -48,7 +48,7 @@ function Header() {
          
 
           <Nav>
-            <Button variant="danger" as={Link} href="/book">Book Seat</Button>
+            <Button variant="danger" as={Link} href="/enroll">Book Seat</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
