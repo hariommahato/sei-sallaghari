@@ -1,0 +1,35 @@
+
+
+.topDiv{
+    background-color: #C9EEFF;
+    color: black;
+    height:"6rem"
+}
+.innerDiv{
+    margin: auto;
+    background-color: #C9EEFF;
+    color: black;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+}
+.heading{
+    width: 70%;
+    margin: auto;
+}
+.text{
+    text-align: justify;
+}
+.row{
+    width: 80%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.image{
+    height: 100%;
+    width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    
+  }

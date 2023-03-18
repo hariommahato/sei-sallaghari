@@ -82,7 +82,12 @@ const Footer = () => {
             </div>
           </Col>
         </Row>
+      
+        <div className="my-3 p-3">
+          <h6>Designed & Developed By -Hariom Mahato</h6>
+        </div>
       </div>
+     
     </div>
   );
 };
