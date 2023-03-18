@@ -1,0 +1,20 @@
+.mainDiv{
+    width: 100%;
+    margin-top: 2rem;
+}
+.contentContainer{
+    margin: auto;
+    text-align: center;
+}
+.image{
+    border-radius: 50%;
+}
+.heading{
+    color: #2F58CD;
+    text-align: center;
+    font-weight: bold;
+}
+
+.text{
+    color: #37306B;
+}

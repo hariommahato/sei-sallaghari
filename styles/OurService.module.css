@@ -1,0 +1,18 @@
+.mainDiv{
+    width: 100%;
+    margin-top: 2rem;
+}
+.heading{
+    color: #2F58CD;
+    text-align: center;
+    font-weight: bold;
+}
+.content{
+    font-weight: bold;
+    font-size: 1.5vmax;
+}
+@media only screen and (max-width: 600px) {
+    .content{
+        font-size: 2vmax;
+    }
+  }

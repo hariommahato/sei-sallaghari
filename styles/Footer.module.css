@@ -1,0 +1,28 @@
+.mainDiv{
+    background-color:#00235B;
+    color: white;
+    margin-top: 2rem;
+    height: 15rem;
+}
+.divContainer {
+ width: 80%;
+ margin: auto;
+ padding-top: 2rem;
+ text-align: center;
+  
+}
+.linkContainer {
+  display: flex;
+  flex-direction: column;
+}
+.heading {
+  color: #62CDFF;
+}
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover{
+    color: red;
+}
