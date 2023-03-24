@@ -1,11 +1,48 @@
 import SeiMap from "@/frontend/components/Map";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import styles from "../../styles/Contact.module.css";
 import { AiOutlineMail } from "react-icons/ai";
+import { useCreateContactMutation } from "@/services/api";
+import { useRouter } from "next/router";
+import {toast,Toaster} from 'react-hot-toast'
 const Contact = () => {
+  const [createContact, { isError, isLoading, isSuccess }] =
+    useCreateContactMutation();
+  const router = useRouter();
+  const [contactData, setContactData] = useState({
+    firstname: "",
+    lastname: "",
+    number: "",
+    email: "",
+    message: "",
+  });
+
+  const { firstname, lastname, email, number, message } = contactData;
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(isError);
+      console.log(isError);
+    }
+    if (isSuccess) {
+      toast.success("Message  Submitted  Successfully");
+      router.push("/");
+    }
+  });
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const data = { firstname, lastname, email, number, message };
+
+    createContact(data);
+  };
+  const onChange = (e) => {
+    setContactData({ ...contactData, [e.target.name]: e.target.value });
+  };
   return (
-    <div className={styles.mainDiv}>
+    <>
+    <Toaster/>
+  <div className={styles.mainDiv}>
       <div className={styles.innerDiv}>
         <h1 className={styles.heading}>CONTACT US</h1>
       </div>
@@ -25,30 +62,60 @@ const Contact = () => {
             <Form>
               <div>
                 <Form.Label>FirstName</Form.Label>
-                <Form.Control type="text" placeholder="Enter First Name" />
+                <Form.Control
+                  type="text"
+                  placeholder="Enter First Name"
+                  name="firstname"
+                  value={firstname}
+                  onChange={onChange}
+                />
               </div>
               <div>
                 <Form.Label>LastName</Form.Label>
-                <Form.Control type="text" placeholder="Enter Last Name" />
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Last Name"
+                  name="lastname"
+                  value={lastname}
+                  onChange={onChange}
+                />
               </div>
               <div>
                 <Form.Label>Contact Number</Form.Label>
                 <Form.Control
                   type="number"
                   placeholder="Enter Contact Number"
+                  name="number"
+                  value={number}
+                  onChange={onChange}
                 />
               </div>
               <div>
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter Email Address" />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter Email Address"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                />
               </div>
               <div>
                 <Form.Label>Message</Form.Label>
-                <Form.Control type="text" placeholder="Enter Message/Queries" />
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Message/Queries"
+                  name="message"
+                  value={message}
+                  onChange={onChange}
+                />
               </div>
 
               <div style={{ width: "100%" }}>
-                <Button style={{ width: "100%", marginTop: "1rem" }}>
+                <Button
+                  style={{ width: "100%", marginTop: "1rem" }}
+                  onClick={submitHandler}
+                >
                   Submit Details
                 </Button>
               </div>
@@ -58,6 +125,8 @@ const Contact = () => {
       </Row>
       <SeiMap />
     </div>
+    </>
+  
   );
 };
 

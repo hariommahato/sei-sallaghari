@@ -7,69 +7,26 @@ import React, { useEffect } from "react";
 import Loader from "@/frontend/components/Loader/Loader";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
-import { useDeleteEnrollMutation, useGetEnrollQuery } from "@/services/api";
 import { DataGrid } from "@mui/x-data-grid";
 import Link from "next/link";
 import { Button } from "react-bootstrap";
+import { useDeleteCarouselMutation,  useGetHomeCarouselQuery } from "@/services/api";
 
-const Enroll = () => {
-  const { data, isLoading } = useGetEnrollQuery();
+const Carousel = () => {
+  const { data, isLoading } = useGetHomeCarouselQuery();
   const router = useRouter();
-  const [deleteEnroll, { isSuccess, isError }] = useDeleteEnrollMutation();
+  const [deleteCarousel, { isSuccess, isError }] = useDeleteCarouselMutation();
   useEffect(() => {
     if (isSuccess) {
       toast.success("Deleted Successfully");
-      router.push("/admin/dashboard/enroll");
+      router.push("/admin/dashboard/carousel");
     }
   }, [isSuccess, toast]);
   const enroll = React.useMemo(() => data, []);
-
   const newData = new Date("2023-03-18T12:48:45.147Z");
-
   const columns = [
     { field: "_id", headerName: " ID", minWidth: 200, flex: 0.5 },
-    {
-      field: "FirstName",
-      headerName: "FirstName",
-      type: "String",
-      minWidth: 200,
-      flex: 0.3,
-    },
-    {
-      field: "LastName",
-      headerName: "LastName",
-      type: "String",
-      minWidth: 100,
-      flex: 0.3,
-    },
-    {
-      field: "Email",
-      headerName: "Email",
-      type: "String",
-      minWidth: 250,
-      flex: 0.3,
-    },
-    {
-      field: "ContactNumber",
-      headerName: "ContactNumber",
-      type: "Number",
-      minWidth: 150,
-      flex: 0.3,
-    },
-    {
-      field: "School",
-      headerName: "School",
-      type: "String",
-      minWidth: 150,
-      flex: 0.3,
-    },
-    {
-      field: "Course",
-      headerName: "Couse",
-      type: "String",
-      minWidth: 250,
-      flex: 0.3,
-    },
+
     {
       field: "Image",
       headerName: "Image",
@@ -90,7 +47,7 @@ const Enroll = () => {
           <>
             <Button
               onClick={() => {
-                router.push(`/admin/dashboard/enroll/${params.row._id}`);
+                router.push(`/admin/dashboard/carousel/${params.row._id}`);
               }}
             >
               <FaEdit />
@@ -98,7 +55,7 @@ const Enroll = () => {
             </Button>
 
             <Button
-              onClick={(e) => deleteEnroll(params.row._id)}
+              onClick={(e) => deleteCarousel(params.row._id)}
               className="mx-3"
               variant="danger"
             >
@@ -109,18 +66,15 @@ const Enroll = () => {
       },
     },
   ];
+  console.log(data)
   const rows = [];
   data &&
-    data?.enroll?.forEach((item) => {
+    data?.carousel?.forEach((item) => {
       rows.push({
         _id: item?._id,
-        FirstName: item?.firstname,
-        LastName: item?.lastname,
-        Email: item?.email,
-        ContactNumber: item?.number,
-        School: item?.school,
-        Course: item?.course,
-        Image: item.images?.url,
+        Image: item.images?.map((item,i)=>{
+          return item?.url
+        }),
       });
     });
   return (
@@ -145,8 +99,8 @@ const Enroll = () => {
   );
 };
 
-export default Enroll;
-Enroll.getLayout = function PageLayout(page) {
+export default Carousel;
+Carousel.getLayout = function PageLayout(page) {
   return (
     <>
       <Providers>

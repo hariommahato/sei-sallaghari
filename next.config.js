@@ -7,7 +7,12 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['scontent.fktm10-1.fna.fbcdn.net'], //make it 'your-domain.com'
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
   env:{
     NEXT_MONGODB_URL:"mongodb+srv://sei:sei@cluster0.mxfc7kq.mongodb.net/?retryWrites=true&w=majority",

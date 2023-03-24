@@ -46,7 +46,7 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-export default function Home() {
+ function Home({data}) {
   const [modalShow, setModalShow] = useState(false);
   useEffect(() => {
     setModalShow(true);
@@ -70,7 +70,7 @@ export default function Home() {
           show={modalShow}
           onHide={() => setModalShow(false)}
         />
-        <HomeCarousel />
+        <HomeCarousel data={data}/>
         <ChooseUs />
         <OurServices />
         <SeiMap />
@@ -78,3 +78,12 @@ export default function Home() {
     </>
   );
 }
+export async function getServerSideProps() {
+  
+  const carousel = await fetch(`http://localhost:3000/api/carousel`)
+  const data = await carousel.json()
+
+  return { props: { data } }
+}
+
+export default Home

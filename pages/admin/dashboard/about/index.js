@@ -7,19 +7,19 @@ import React, { useEffect } from "react";
 import Loader from "@/frontend/components/Loader/Loader";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
-import { useDeleteEnrollMutation, useGetEnrollQuery } from "@/services/api";
 import { DataGrid } from "@mui/x-data-grid";
 import Link from "next/link";
 import { Button } from "react-bootstrap";
+import { useDeleteAboutMutation, useGetAboutQuery } from "@/services/api";
 
-const Enroll = () => {
-  const { data, isLoading } = useGetEnrollQuery();
+const About = () => {
+  const { data, isLoading } = useGetAboutQuery();
   const router = useRouter();
-  const [deleteEnroll, { isSuccess, isError }] = useDeleteEnrollMutation();
+  const [deleteAbout, { isSuccess, isError }] = useDeleteAboutMutation();
   useEffect(() => {
     if (isSuccess) {
       toast.success("Deleted Successfully");
-      router.push("/admin/dashboard/enroll");
+      router.push("/admin/dashboard/about");
     }
   }, [isSuccess, toast]);
   const enroll = React.useMemo(() => data, []);
@@ -29,47 +29,13 @@ const Enroll = () => {
   const columns = [
     { field: "_id", headerName: " ID", minWidth: 200, flex: 0.5 },
     {
-      field: "FirstName",
-      headerName: "FirstName",
+      field: "Description",
+      headerName: "Description",
       type: "String",
       minWidth: 200,
       flex: 0.3,
     },
-    {
-      field: "LastName",
-      headerName: "LastName",
-      type: "String",
-      minWidth: 100,
-      flex: 0.3,
-    },
-    {
-      field: "Email",
-      headerName: "Email",
-      type: "String",
-      minWidth: 250,
-      flex: 0.3,
-    },
-    {
-      field: "ContactNumber",
-      headerName: "ContactNumber",
-      type: "Number",
-      minWidth: 150,
-      flex: 0.3,
-    },
-    {
-      field: "School",
-      headerName: "School",
-      type: "String",
-      minWidth: 150,
-      flex: 0.3,
-    },
-    {
-      field: "Course",
-      headerName: "Couse",
-      type: "String",
-      minWidth: 250,
-      flex: 0.3,
-    },
+    
     {
       field: "Image",
       headerName: "Image",
@@ -90,7 +56,7 @@ const Enroll = () => {
           <>
             <Button
               onClick={() => {
-                router.push(`/admin/dashboard/enroll/${params.row._id}`);
+                router.push(`/admin/dashboard/about/${params.row._id}`);
               }}
             >
               <FaEdit />
@@ -98,7 +64,7 @@ const Enroll = () => {
             </Button>
 
             <Button
-              onClick={(e) => deleteEnroll(params.row._id)}
+              onClick={(e) => deleteAbout(params.row._id)}
               className="mx-3"
               variant="danger"
             >
@@ -111,15 +77,11 @@ const Enroll = () => {
   ];
   const rows = [];
   data &&
-    data?.enroll?.forEach((item) => {
+    data?.about?.forEach((item) => {
       rows.push({
         _id: item?._id,
-        FirstName: item?.firstname,
-        LastName: item?.lastname,
-        Email: item?.email,
-        ContactNumber: item?.number,
-        School: item?.school,
-        Course: item?.course,
+        Description: item?.description,
+       
         Image: item.images?.url,
       });
     });
@@ -145,8 +107,8 @@ const Enroll = () => {
   );
 };
 
-export default Enroll;
-Enroll.getLayout = function PageLayout(page) {
+export default About;
+About.getLayout = function PageLayout(page) {
   return (
     <>
       <Providers>

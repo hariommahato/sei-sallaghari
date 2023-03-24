@@ -1,0 +1,12 @@
+.row{
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+}
+.list{
+    list-style: none;
+}
+.heading{
+    color: #2F58CD;
+    text-align: center;
+}

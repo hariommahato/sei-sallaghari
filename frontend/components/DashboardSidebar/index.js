@@ -51,37 +51,40 @@ const DashboardSidebar = () => {
             All{" "}
           </MenuItem>
         </SubMenu>
-
-        <SubMenu label="Faq">
-          <MenuItem as={Link} href={`/admin/dashboard/faq/add`}>
+        <SubMenu label="CategoryData">
+          <MenuItem as={Link} href={`/admin/dashboard/category/add`}>
             {" "}
-            Add Faq{" "}
+            Add Category{" "}
           </MenuItem>
-          <MenuItem ad={Link} href={"/admin/dashboard/faq"}>
-            {" "}
-            All{" "}
-          </MenuItem>
-        </SubMenu>
-        <SubMenu label="Blog">
-          <MenuItem as={Link} href={`/admin/dashboard/blog/add`}>
-            {" "}
-            Add Blog{" "}
-          </MenuItem>
-          <MenuItem ad={Link} href={"/admin/dashboard/blog"}>
+          <MenuItem ad={Link} href={"/admin/dashboard/category"}>
             {" "}
             All{" "}
           </MenuItem>
         </SubMenu>
 
-        <SubMenu label="FeedbackData">
-          <MenuItem ad={Link} href={"/admin/dashboard/feedback"}>
+        <SubMenu label="AboutData">
+          <MenuItem as={Link} href={`/admin/dashboard/about/add`}>
+            {" "}
+            Add About{" "}
+          </MenuItem>
+          <MenuItem ad={Link} href={"/admin/dashboard/about"}>
             {" "}
             All{" "}
           </MenuItem>
         </SubMenu>
 
-        <SubMenu label="FormData">
-          <MenuItem ad={Link} href={"/admin/dashboard/form"}>
+        <SubMenu label="RoutineData">
+          <MenuItem as={Link} href={`/admin/dashboard/routine/add`}>
+            {" "}
+            Add Routine{" "}
+          </MenuItem>
+          <MenuItem ad={Link} href={"/admin/dashboard/routine"}>
+            {" "}
+            All{" "}
+          </MenuItem>
+        </SubMenu>
+        <SubMenu label="ContactData">
+          <MenuItem ad={Link} href={"/admin/dashboard/contact"}>
             {" "}
             All{" "}
           </MenuItem>

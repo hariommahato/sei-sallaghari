@@ -6,7 +6,8 @@ import { toast, Toaster } from "react-hot-toast";
 import { AiOutlineMail } from "react-icons/ai";
 import { useCreateEnrollMutation } from "@/services/api";
 import { useRouter } from "next/router";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
+import Image from "next/image";
 
 const Enroll = () => {
   const [createEnroll, { isError, isLoading, isSuccess }] =
@@ -31,7 +32,7 @@ const Enroll = () => {
     }
     if (isSuccess) {
       toast.success("Detail Submitted  Successfully");
-      router.push("/")
+      router.push("/");
     }
   });
   console.log(isLoading, isError, isSuccess);
@@ -158,13 +159,33 @@ const Enroll = () => {
                 <div className="my-3">
                   <Form.Control type="file" name="images" onChange={onChange} />
                 </div>
+                <div>
+                  <Image
+                    src={imagePreview}
+                    alt="Image"
+                    width={100}
+                    height={100}
+                    className="my-3"
+                  />
+                  <Image
+                    src={images}
+                    alt="Image"
+                    width={100}
+                    height={100}
+                    className="my-3"
+                  />
+                </div>
                 <div style={{ width: "100%" }}>
                   <Button
                     style={{ width: "100%", marginTop: "1rem" }}
                     onClick={submitHandler}
-                    
+                    disabled={isLoading ? true :false}
                   >
-                   {isLoading ? <Spinner animation="border" variant="" />: "Submit Details"}  
+                    {isLoading ? (
+                      <Spinner animation="border" variant="" />
+                    ) : (
+                      "Submit Details"
+                    )}
                   </Button>
                 </div>
               </Form>

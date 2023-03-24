@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Dna } from "react-loader-spinner";
 const Loader = () => {
@@ -5,7 +6,10 @@ const Loader = () => {
     <div style={{
         display:"flex",
         justifyContent:"center",
-        alignItems:"center"
+        alignItems:"center",
+        textAlign:"center",
+        width:"50%",
+        margin:"auto"
     }}>
       <Dna
         visible={true}

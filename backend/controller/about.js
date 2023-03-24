@@ -1,27 +1,20 @@
-import Enroll from "../models/enroll";
+import About from "../models/about";
 import cloudinaryConfig from "../config/cloudinaryConfig";
 import catchAsyncErrors from "../middleware/catchAsyncErrors";
 import cloudinary from "cloudinary";
-
 cloudinaryConfig();
 
-export const createEnroll = catchAsyncErrors(async (req, res, next) => {
-  const { firstname, lastname, email, number, school, course,images } = req.body;
-  {console.log(req.body)}
+export const createAbout = catchAsyncErrors(async (req, res, next) => {
+  const { images, description } = req.body;
 
   const result = await cloudinary.v2.uploader.upload(images, {
-    folder: "SeiInstitute",
+    folder: "SEI",
     width: "150",
     crop: "scale",
   });
 
-  const enroll = await Enroll.create({
-    firstname,
-    lastname,
-    email,
-    number,
-    school,
-    course,
+  const about = await About.create({
+    description,
     images: {
       public_id: result.public_id,
       url: result.secure_url,
@@ -31,37 +24,33 @@ export const createEnroll = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true });
 });
 // get Details
-export const getEnrollDetails = catchAsyncErrors(async (req, res, next) => {
-  const enroll = await Enroll.findById(req.query.id);
+export const getAboutDetials = catchAsyncErrors(async (req, res, next) => {
+  const about = await About.findById(req.query.id);
   res.status(200).json({
     success: true,
-    enroll,
+    about,
   });
 });
 
-export const getAllEnroll = catchAsyncErrors(async (req, res, next) => {
-  const enroll = await Enroll.find();
+export const getAllAbout = catchAsyncErrors(async (req, res, next) => {
+  const about = await About.find();
   res.status(200).json({
     success: true,
-    enroll,
+    about,
   });
 });
 
-export const updateEnroll = catchAsyncErrors(async (req, res, next) => {
-  const data = await Enroll.findById(req.query.id);
-  const { firstname, lastname, email, number, school, course,images} = req.body;
+export const updateAbout = catchAsyncErrors(async (req, res, next) => {
+  const data = await About.findById(req.query.id);
+  const { images, description } = req.body;
 
   if (!data)
     res.status(404).json({
       message: "Not Found",
     });
   if (data) {
-    data.firstname = firstname;
-    data.lastname = lastname;
-    data.email = email;
-    data.number = number;
-    data.school = school;
-    data.course = course;
+    data.description = description;
+   
   }
 
   if (images !== "") {
@@ -81,16 +70,16 @@ export const updateEnroll = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-export const deleteEnroll = catchAsyncErrors(async (req, res, next) => {
-  const enroll = await Enroll.findById(req.query.id);
-  if (!enroll) {
+export const deleteAbout = catchAsyncErrors(async (req, res, next) => {
+  const about = await About.findById(req.query.id);
+  if (!about) {
     res.status(404).json({
       message: "Data Not Found",
     });
   }
-  const imageId = enroll.images.public_id;
+  const imageId = about.images.public_id;
   await cloudinary.v2.uploader.destroy(imageId);
-  await Enroll.findByIdAndDelete(req.query.id);
+  await About.findByIdAndDelete(req.query.id);
   res.status(200).json({
     success: true,
     message: "Deleted Successfully",
