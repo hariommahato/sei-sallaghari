@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../Quiz.module.css";
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/router";
-import {toast,Toaster} from 'react-hot-toast'
+import { toast, Toaster } from "react-hot-toast";
 
 const QuizPlay = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,8 +19,8 @@ const QuizPlay = () => {
   const [mark, setMark] = useState(0);
   const [correct, setCorrect] = useState();
   const router = useRouter();
-  
-  const [createResult, { isSuccess ,isError}] = useCreateResultMutation();
+
+  const [createResult, { isSuccess, isError }] = useCreateResultMutation();
 
   useEffect(() => {
     const dataSt = JSON.parse(localStorage.getItem("studentdata"));
@@ -35,13 +35,15 @@ const QuizPlay = () => {
       setMark(mark + 1);
     }
     if (isSuccess) {
-      router.push("/success");
+      router.push({
+        pathname: "/success",
+        query: { mark: mark },
+      });
     }
     if (isError) {
-      toast.error("Something Happen")
+      toast.error("Something Happen");
     }
-  }, [data, selected, isSuccess,isError]);
-
+  }, [data, selected, isSuccess, isError]);
 
   const handleNext = (e) => {
     // e.preventDefault();
@@ -64,7 +66,7 @@ const QuizPlay = () => {
         <Loader />
       ) : (
         <div className={styles.playMainDiv}>
-        <Toaster/>
+          <Toaster />
           <h4>Hello {studentdata?.name}</h4>
           <div className={styles.quizContainer}>
             {data?.quiz?.map((item, i) => {

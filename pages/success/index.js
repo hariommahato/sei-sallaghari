@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Confetti from "react-confetti";
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/router";
 
 const Success = () => {
-    const router=useRouter()
-  const studentdata = JSON.parse(
-    localStorage && localStorage?.getItem("studentdata")
-  );
-  const mark = JSON.parse(localStorage?.getItem("mark"));
+  const router = useRouter();
+
+  const {mark}=router.query
+  const [studentdata, setStudentData] = useState();
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    setStudentData(JSON.parse(localStorage?.getItem("studentdata")));
+  }, []);
   return (
     <div
       style={{
@@ -18,10 +24,11 @@ const Success = () => {
         justifyContent: "center",
       }}
     >
+      {console.log( studentdata)}
       <div className="text-center" style={{ color: "red" }}>
         <h2>SEI INSTITUTE</h2>
         <h3>Congratulations !!!!!!</h3>
-        <p>{studentdata.name}</p>
+        <p>{studentdata?.name}</p>
         <div>Score:{mark}</div>
       </div>
 
