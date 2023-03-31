@@ -8,7 +8,7 @@ handler.get(getCarouselDetails).put(updateCarousel).delete(deleteCarousel);
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '1000mb' // Set desired value here
+            sizeLimit: '400000mb' // Set desired value here
         }
     }
   }

@@ -20,7 +20,6 @@ export const createAbout = catchAsyncErrors(async (req, res, next) => {
       url: result.secure_url,
     },
   });
-
   res.status(200).json({ success: true });
 });
 // get Details

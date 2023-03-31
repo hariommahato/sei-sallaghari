@@ -1,26 +1,26 @@
 import DashboardSidebar from "@/frontend/components/DashboardSidebar";
 import Loader from "@/frontend/components/Loader/Loader";
 import {
-  useGetCarouselDetailsQuery,
-  useUpdateCarouselMutation,
+  useGetGalleryDetailsQuery,
+  useUpdateGalleryMutation,
 } from "@/services/api";
 
 import { Providers } from "@/services/providers";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { toast, Toaster } from "react-hot-toast";
 
-const Carousel = () => {
+const Gallery = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data, isError, isLoading } = useGetCarouselDetailsQuery(id);
+  const { data, isError, isLoading } = useGetGalleryDetailsQuery(id);
 
   const [
-    updateCarousel,
+    updateGallery,
     { isSuccess, isError: updateError, isLoading: updateLoading },
-  ] = useUpdateCarouselMutation();
+  ] = useUpdateGalleryMutation();
 
   const [images, setImages] = useState([]);
   const [imagePreview, setImagePreview] = useState([]);
@@ -29,17 +29,17 @@ const Carousel = () => {
   console.log(imagePreview, images);
   useEffect(() => {
     if (data) {
-      const { images } = data?.carousel?.images;
+      const { images } = data?.gallery?.images;
       setImages(images);
-      setOldImages(data?.carousel?.images);
-      setImagePreview(data?.carousel?.images);
+      setOldImages(data?.gallery?.images);
+      setImagePreview(data?.gallery?.images);
     }
     if (isError) {
       toast.error("Error Fetching Data");
     }
     if (isSuccess) {
       toast.success("Successfully Updated");
-      router.push("/admin/dashboard/carousel");
+      router.push("/admin/dashboard/gallery");
     }
     if (updateError) {
       toast.error("Something went wrong");
@@ -50,7 +50,7 @@ const Carousel = () => {
     const data = {
       images,
     };
-    updateCarousel({ id, data });
+    updateGallery({ id, data });
   };
   const onChange = (e) => {
     const files = Array.from(e.target.files);
@@ -90,7 +90,7 @@ const Carousel = () => {
             }}
           >
             <form onSubmit={handleUpdate} encType={"multipart/form-data"}>
-              <h5>Update Carousel Data</h5>
+              <h5>Update Gallery Data</h5>
 
               <div>
                 <Form.Label>Image</Form.Label>
@@ -149,8 +149,8 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
-Carousel.getLayout = function PageLayout(page) {
+export default Gallery;
+Gallery.getLayout = function PageLayout(page) {
   return (
     <>
       <Providers>

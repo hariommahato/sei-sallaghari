@@ -26,10 +26,6 @@ const Enroll = () => {
   const { firstname, lastname, email, number, school, course } = enrollData;
 
   useEffect(() => {
-    if (isError) {
-      toast.error(isError);
-      console.log(isError);
-    }
     if (isSuccess) {
       toast.success("Detail Submitted  Successfully");
       router.push("/");
@@ -38,8 +34,29 @@ const Enroll = () => {
   console.log(isLoading, isError, isSuccess);
   const submitHandler = (e) => {
     e.preventDefault();
+    if (firstname == "") {
+      toast.error("Name Cannot Be Empty");
+    }
+    if (lastname == "") {
+      toast.error("Lastname Cannot Be Empty");
+    }
+    if (email == "") {
+      toast.error("Email Cannot Be Empty");
+    }
+    if (number == "") {
+      toast.error("Number Cannot Be Empty");
+    }
+    if (school == "") {
+      toast.error("School Cannot Be Empty");
+    }
+    if (course == "") {
+      toast.error("Course Cannot Be Empty");
+    }
+    if (images == "") {
+      toast.error("Image Cannot Be Empty");
+    }
     const data = { firstname, lastname, email, number, school, course, images };
-    console.log(data);
+
     createEnroll(data);
   };
   const onChange = (e) => {
@@ -179,7 +196,7 @@ const Enroll = () => {
                   <Button
                     style={{ width: "100%", marginTop: "1rem" }}
                     onClick={submitHandler}
-                    disabled={isLoading ? true :false}
+                    disabled={isLoading ? true : false}
                   >
                     {isLoading ? (
                       <Spinner animation="border" variant="" />

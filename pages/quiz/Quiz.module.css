@@ -1,0 +1,53 @@
+.mainDiv {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.button {
+  margin-top: 1rem;
+}
+.playMainDiv {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
+  flex-direction: column;
+}
+.quizContainer{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+.productsHeading {
+  margin: 2vmax auto;
+  width: 15vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  padding: 2vmax;
+  color: rgba(0, 0, 0, 0.678);
+  font: 500 1.5vmax "Roboto";
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .mainDiv {
+    width: 100%;
+  }
+  .playMainDiv {
+    width: 100%;
+  }
+  .quizContainer{
+    width: 100%;
+    padding: 1rem;
+  }
+}

@@ -2,14 +2,19 @@ import mongoose from "mongoose";
 
 const resultSchema = new mongoose.Schema(
   {
-    username : { type : String },
-    result : { type : Array, default : []},
-    attempts : { type : Number, default : 0},
-    points : { type : Number, default : 0},
-    achived : { type : String, default : ''},
-    createdAt : { type : Date, default : Date.now}
+    name: {
+      type: String,
+    },
+    section: {
+      type: String,
+    },
+    mark: {
+      type: Number,
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: { createdAt: true },
+  }
 );
 export default mongoose.models?.Result ||
   mongoose.model("Result", resultSchema);

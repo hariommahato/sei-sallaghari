@@ -23,9 +23,6 @@ function Header() {
             <Nav.Link as={Link} href="about">
               ABOUT US
             </Nav.Link>
-            <Nav.Link as={Link} href="course">
-              COURSE{" "}
-            </Nav.Link>
             <Nav.Link as={Link} href="contact">
               CONTACT US
             </Nav.Link>
@@ -33,7 +30,13 @@ function Header() {
               COURSES
             </Nav.Link>
             <Nav.Link as={Link} href="routine">
-            ROUTINE
+              ROUTINE
+            </Nav.Link>
+            <Nav.Link as={Link} href="quiz">
+              EXAM
+            </Nav.Link>
+            <Nav.Link as={Link} href="gallery">
+              Gallery
             </Nav.Link>
           </Nav>
           <div className="mx-3">

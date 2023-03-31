@@ -1,55 +1,41 @@
 import DashboardSidebar from "@/frontend/components/DashboardSidebar";
 import Loader from "@/frontend/components/Loader/Loader";
-import { Providers } from "@/services/providers";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { toast, Toaster } from "react-hot-toast";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import { useCreateHomeCarouselMutation } from "@/services/api";
+import { useCreateUserMutation } from "@/services/api";
+import { Providers } from "@/services/providers";
 
-const Carousel = () => {
-  const [createHomeCarousel, { isError, isLoading, isSuccess }] =
-    useCreateHomeCarouselMutation();
+const User = () => {
+  const [createUser, { isError, isLoading, isSuccess }] =
+    useCreateUserMutation();
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const { username, email, password } = userData;
   const router = useRouter();
-  const [images, setImages] = useState([]);
-  const [imagePreview, setImagePreview] = useState([]);
   useEffect(() => {
     if (isError) {
       toast.error(isError);
     }
     if (isSuccess) {
       toast.success("Created Successfully");
-      router.push("/admin/dashboard/carousel");
+      router.push("/admin/dashboard/user");
     }
   });
   const submitHandler = (e) => {
     e.preventDefault();
-    const data = { images };
-    createHomeCarousel(data);
+    const data = { username, email, password };
+    createUser(data);
   };
-
-  console.log(images);
 
   const onChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    setImages([]);
-    setImagePreview([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImages((old) => [...old, reader.result]);
-          setImagePreview((old) => [...old, reader.result]);
-        }
-      };
-
-      reader.readAsDataURL(file);
-    });
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
+
   return (
     <>
       {isLoading ? (
@@ -62,40 +48,47 @@ const Carousel = () => {
               width: "60%",
               margin: "auto",
               display: "flex",
+              flexDirection: "column",
               marginTop: "0",
               justifyContent: "center",
             }}
           >
             <form onSubmit={submitHandler}>
               <h5 style={{ textAlign: "center", padding: "1rem" }}>
-                Add Carousel Data
+                Create User
               </h5>
 
-              <div className="my-3">
+              <div>
                 <Form.Control
-                  type="file"
-                  name="images"
-                  accept="image/*"
+                  type="text"
+                  placeholder="Enter Username"
+                  name="username"
+                  value={username}
                   onChange={onChange}
-                  multiple
                 />
               </div>
               <div>
-                {imagePreview?.map((item, i) => {
-                  return (
-                    <Image
-                      key={i}
-                      src={item}
-                      alt="Product Preview"
-                      width={50}
-                      height={50}
-                    />
-                  );
-                })}
+                <Form.Control
+                  type="emaile"
+                  placeholder="Enter Email"
+                  name="email"
+                  value={email}
+                  className="my-3"
+                  onChange={onChange}
+                />
               </div>
 
+              <div>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Password "
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  className="my-3"
+                />
+              </div>
               <Button
-                id="createProductBtn"
                 type="submit"
                 disabled={isLoading ? true : false}
                 style={{ width: "100%", marginTop: "2rem" }}
@@ -110,8 +103,8 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
-Carousel.getLayout = function PageLayout(page) {
+export default User;
+User.getLayout = function PageLayout(page) {
   return (
     <>
       <Providers>

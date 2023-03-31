@@ -48,6 +48,7 @@ function MyVerticallyCenteredModal(props) {
 
  function Home({data}) {
   const [modalShow, setModalShow] = useState(false);
+
   useEffect(() => {
     setModalShow(true);
   }, []);
@@ -71,6 +72,7 @@ function MyVerticallyCenteredModal(props) {
           onHide={() => setModalShow(false)}
         />
         <HomeCarousel data={data}/>
+        
         <ChooseUs />
         <OurServices />
         <SeiMap />

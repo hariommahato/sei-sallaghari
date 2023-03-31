@@ -27,19 +27,7 @@ const Footer = () => {
                 primary objective of our institute is to equip students with the
                 knowledge and skills necessary for success in their chosen
                 careers
-                {/* and in life. This is achieved by providing a diverse and engaging
-              curriculum that caters to the needs of all students. The institute
-              also aims to foster a culture of lifelong learning, promoting
-              critical thinking, creativity, and problem-solving skills among
-              students. Additionally, education institutes aim to create a safe
-              and inclusive environment where all students feel valued and
-              respected, regardless of their backgrounds or abilities. They also
-              strive to cultivate a sense of social responsibility, encouraging
-              students to become active and engaged members of their
-              communities. Ultimately, the objective of an our institute is to
-              empower students to become confident, well-rounded individuals who
-              can contribute positively to society.
-             */}
+               
               </p>
             </div>
           </Col>
@@ -53,10 +41,10 @@ const Footer = () => {
                 About Us
               </Link>
 
-              <Link href={"/about"} className={styles.link}>
+              <Link href={"/course"} className={styles.link}>
                 Course
               </Link>
-              <Link href={"/about"} className={styles.link}>
+              <Link href={"/contact"} className={styles.link}>
                 Contact Us
               </Link>
             </div>
@@ -66,28 +54,43 @@ const Footer = () => {
             <div className={styles.linkContainer}>
               <Link href={"/"} className={styles.link}>
                 <BsFillTelephoneFill />
-                <span className="mx-2">9842577214, 9841621432, 016619514</span>
+                <span className="mx-2">9843577214, 9841621432, 016619514</span>
               </Link>
-              <Link href={"/about"} className={styles.link}>
+
+              <Link
+                href="mailto:seieducationalinstitute@gmail.com"
+                target="_blank"
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                }}
+              >
                 <AiFillMail />
                 <span className="mx-2">seieducationalinstitute@gmail.com</span>
               </Link>
+
               <div className="my-1">
                 <h5>FOLLOW US</h5>
                 <div>
-                  <AiFillFacebook size={40} />
-                  <AiFillTwitterSquare size={40} />
+                  <Link
+                    href="https://www.facebook.com/profile.php?id=100063934392442"
+                    target={"_blank"}
+                    style={{
+                      color: "white",
+                    }}
+                  >
+                    <AiFillFacebook size={40} />
+                  </Link>
                 </div>
               </div>
             </div>
           </Col>
         </Row>
-      
+
         <div className="my-3 p-3">
           <h6>Designed & Developed By -Hariom Mahato</h6>
         </div>
       </div>
-     
     </div>
   );
 };

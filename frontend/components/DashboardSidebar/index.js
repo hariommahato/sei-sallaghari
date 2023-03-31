@@ -51,12 +51,51 @@ const DashboardSidebar = () => {
             All{" "}
           </MenuItem>
         </SubMenu>
+
+        <SubMenu label="Gallery">
+          <MenuItem as={Link} href={`/admin/dashboard/gallery/add`}>
+            {" "}
+            Add Gallery{" "}
+          </MenuItem>
+          <MenuItem ad={Link} href={"/admin/dashboard/gallery"}>
+            {" "}
+            All{" "}
+          </MenuItem>
+        </SubMenu>
+
+        <SubMenu label="User">
+          <MenuItem as={Link} href={`/admin/dashboard/user/add`}>
+            {" "}
+            Add User{" "}
+          </MenuItem>
+          <MenuItem ad={Link} href={"/admin/dashboard/user"}>
+            {" "}
+            All{" "}
+          </MenuItem>
+        </SubMenu>
         <SubMenu label="CategoryData">
           <MenuItem as={Link} href={`/admin/dashboard/category/add`}>
             {" "}
             Add Category{" "}
           </MenuItem>
           <MenuItem ad={Link} href={"/admin/dashboard/category"}>
+            {" "}
+            All{" "}
+          </MenuItem>
+        </SubMenu>
+        <SubMenu label="ResultData">
+         
+          <MenuItem ad={Link} href={"/admin/dashboard/result"}>
+            {" "}
+            All{" "}
+          </MenuItem>
+        </SubMenu>
+        <SubMenu label="QuizData">
+          <MenuItem as={Link} href={`/admin/dashboard/quiz/add`}>
+            {" "}
+            Add Quiz{" "}
+          </MenuItem>
+          <MenuItem ad={Link} href={"/admin/dashboard/quiz"}>
             {" "}
             All{" "}
           </MenuItem>

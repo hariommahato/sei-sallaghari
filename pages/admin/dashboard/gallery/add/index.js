@@ -6,11 +6,11 @@ import { Button, Card, Form } from "react-bootstrap";
 import { toast, Toaster } from "react-hot-toast";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useCreateHomeCarouselMutation } from "@/services/api";
+import { useCreateGalleryMutation } from "@/services/api";
 
-const Carousel = () => {
-  const [createHomeCarousel, { isError, isLoading, isSuccess }] =
-    useCreateHomeCarouselMutation();
+const Gallery = () => {
+  const [createGallery, { isError, isLoading, isSuccess }] =
+    useCreateGalleryMutation();
   const router = useRouter();
   const [images, setImages] = useState([]);
   const [imagePreview, setImagePreview] = useState([]);
@@ -20,13 +20,13 @@ const Carousel = () => {
     }
     if (isSuccess) {
       toast.success("Created Successfully");
-      router.push("/admin/dashboard/carousel");
+      router.push("/admin/dashboard/gallery");
     }
   });
   const submitHandler = (e) => {
     e.preventDefault();
     const data = { images };
-    createHomeCarousel(data);
+    createGallery(data);
   };
 
   console.log(images);
@@ -68,7 +68,7 @@ const Carousel = () => {
           >
             <form onSubmit={submitHandler}>
               <h5 style={{ textAlign: "center", padding: "1rem" }}>
-                Add Carousel Data
+                Add Gallery Data
               </h5>
 
               <div className="my-3">
@@ -110,8 +110,8 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
-Carousel.getLayout = function PageLayout(page) {
+export default Gallery;
+Gallery.getLayout = function PageLayout(page) {
   return (
     <>
       <Providers>

@@ -5,7 +5,18 @@ export const seiApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api",
   }),
-  tagTypes: ["Enroll", "About", "Contact", "Carousel","Routine","Category"],
+  tagTypes: [
+    "Enroll",
+    "About",
+    "Contact",
+    "Carousel",
+    "Routine",
+    "Category",
+    "Quiz",
+    "Result",
+    "Gallery",
+    "Users"
+  ],
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
       return action.payload[reducerPath];
@@ -208,11 +219,11 @@ export const seiApi = createApi({
       providesTags: ["Carousel"],
     }),
     updateCarousel: builder.mutation({
-      query: ({ id, carouselData }) => {
+      query: ({ id, data }) => {
         return {
           url: `/carousel/${id}`,
           method: "PUT",
-          body: carouselData,
+          body: data,
           prepareHeaders: (headers) => {
             headers.set("Content-Type", "multipart/form-data");
             return headers;
@@ -231,10 +242,6 @@ export const seiApi = createApi({
       },
       invalidatesTags: ["Carousel"],
     }),
-
-
-
-
 
     getRoutine: builder.query({
       query: () => ({
@@ -291,10 +298,6 @@ export const seiApi = createApi({
       invalidatesTags: ["Routine"],
     }),
 
-
-
-
-
     getCategory: builder.query({
       query: () => ({
         url: "/category",
@@ -349,6 +352,237 @@ export const seiApi = createApi({
       },
       invalidatesTags: ["Category"],
     }),
+    getQuiz: builder.query({
+      query: (currentPage = 1) => {
+        return {
+          url: `/quiz?page=${currentPage}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Quiz"],
+    }),
+    getAdminQuiz: builder.query({
+      query: () => {
+        return {
+          url: `/quiz/admin`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Quiz"],
+    }),
+    createQuiz: builder.mutation({
+      query: (data) => {
+        return {
+          url: `quiz`,
+          method: "POST",
+          body: data,
+          prepareHeaders: (headers) => {
+            headers.set("Content-Type", "application/json");
+            return headers;
+          },
+        };
+      },
+      invalidatesTags: ["Quiz"],
+    }),
+    getQuizDetails: builder.query({
+      query: (id) => {
+        return {
+          url: `/quiz/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Quiz"],
+    }),
+    updateQuiz: builder.mutation({
+      query: ({ id, data }) => {
+        return {
+          url: `/quiz/${id}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+
+      invalidatesTags: ["Quiz"],
+    }),
+    deleteQuiz: builder.mutation({
+      query: (id) => {
+        return {
+          url: `quiz/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["Quiz"],
+    }),
+
+    getResult: builder.query({
+      query: () => {
+        return {
+          url: `/result`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Result"],
+    }),
+    createResult: builder.mutation({
+      query: (data) => {
+        return {
+          url: `result`,
+          method: "POST",
+          body: data,
+          prepareHeaders: (headers) => {
+            headers.set("Content-Type", "application/json");
+            return headers;
+          },
+        };
+      },
+      invalidatesTags: ["Result"],
+    }),
+    getResultDetails: builder.query({
+      query: (id) => {
+        return {
+          url: `/result/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Result"],
+    }),
+    updateResult: builder.mutation({
+      query: ({ id, data }) => {
+        return {
+          url: `/result/${id}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+
+      invalidatesTags: ["Result"],
+    }),
+    deleteResult: builder.mutation({
+      query: (id) => {
+        return {
+          url: `result/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["Result"],
+    }),
+
+
+    getUsers: builder.query({
+      query: () => ({
+        url: "/admin",
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+    createUser: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/register`,
+          method: "POST",
+          body: data,
+          prepareHeaders: (headers) => {
+            headers.set("Content-Type", "multipart/form-data");
+            return headers;
+          },
+        };
+      },
+      invalidatesTags: ["User"],
+    }),
+    getSingleUser: builder.query({
+      query: (id) => {
+        return {
+          url: `/admin/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["User"],
+    }),
+    updateUser: builder.mutation({
+      query: ({ id, data }) => {
+        return {
+          url: `/admin/${id}`,
+          method: "PUT",
+          body: data,
+          prepareHeaders: (headers) => {
+            headers.set("Content-Type", "multipart/form-data");
+            return headers;
+          },
+        };
+      },
+
+      invalidatesTags: ["User"],
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => {
+        return {
+          url: `admin/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["Users"],
+    }),
+
+
+
+
+
+
+    getGallery: builder.query({
+      query: () => ({
+        url: "/gallery",
+        method: "GET",
+      }),
+      providesTags: ["Gallery"],
+    }),
+    createGallery: builder.mutation({
+      query: (data) => {
+        return {
+          url: `gallery`,
+          method: "POST",
+          body: data,
+          prepareHeaders: (headers) => {
+            headers.set("Content-Type", "multipart/form-data");
+            return headers;
+          },
+        };
+      },
+      invalidatesTags: ["Gallery"],
+    }),
+    getGalleryDetails: builder.query({
+      query: (id) => {
+        return {
+          url: `/gallery/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Gallery"],
+    }),
+    updateGallery: builder.mutation({
+      query: ({ id, data }) => {
+        return {
+          url: `/gallery/${id}`,
+          method: "PUT",
+          body: data,
+          prepareHeaders: (headers) => {
+            headers.set("Content-Type", "multipart/form-data");
+            return headers;
+          },
+        };
+      },
+
+      invalidatesTags: ["Gallery"],
+    }),
+    deleteGallery: builder.mutation({
+      query: (id) => {
+        return {
+          url: `gallery/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["Gallery"],
+    }),
+
   }),
 });
 
@@ -376,8 +610,6 @@ export const {
   useUpdateCarouselMutation,
   useDeleteCarouselMutation,
 
-
-
   useCreateRoutineMutation,
   useDeleteRoutineMutation,
   useUpdateRoutineMutation,
@@ -388,5 +620,30 @@ export const {
   useDeleteCategoryMutation,
   useUpdateCategoryMutation,
   useGetCategoryDetailsQuery,
-  useGetCategoryQuery
+  useGetCategoryQuery,
+
+  useGetQuizDetailsQuery,
+  useGetQuizQuery,
+  useUpdateQuizMutation,
+  useDeleteQuizMutation,
+  useCreateQuizMutation,
+  useGetAdminQuizQuery,
+
+  useCreateResultMutation,
+  useDeleteResultMutation,
+  useGetResultDetailsQuery,
+  useGetResultQuery,
+  useUpdateResultMutation,
+
+  useCreateGalleryMutation,
+  useGetGalleryDetailsQuery,
+  useDeleteGalleryMutation,
+  useUpdateGalleryMutation,
+  useGetGalleryQuery,
+
+  useCreateUserMutation,
+  useGetSingleUserQuery,
+  useGetUsersQuery,
+  useUpdateUserMutation,
+  useDeleteUserMutation
 } = seiApi;

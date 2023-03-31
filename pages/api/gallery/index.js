@@ -1,13 +1,13 @@
 import nextconnect from "next-connect";
 import dbConnect from "@/backend/config/dbConnect";
 import {
-  createHomeCarousel,
-  getAllCarousel,
-} from "../../../backend/controller/homecarousel";
+  createGallery,
+  getAllGallery,
+} from "../../../backend/controller/gallery";
 
 const handler = nextconnect();
 dbConnect();
-handler.post(createHomeCarousel).get(getAllCarousel);
+handler.post(createGallery).get(getAllGallery);
 
 export const config = {
   api: {
