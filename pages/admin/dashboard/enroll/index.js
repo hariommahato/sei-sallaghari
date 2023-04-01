@@ -1,6 +1,7 @@
 import DashboardSidebar from "@/frontend/components/DashboardSidebar";
 import { Providers } from "@/services/providers";
 import { FaEdit } from "react-icons/fa";
+import { format } from "date-fns";
 
 import React, { useEffect } from "react";
 
@@ -9,8 +10,9 @@ import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { useDeleteEnrollMutation, useGetEnrollQuery } from "@/services/api";
 import { DataGrid } from "@mui/x-data-grid";
-import Link from "next/link";
+
 import { Button } from "react-bootstrap";
+import moment from "moment";
 
 const Enroll = () => {
   const { data, isLoading } = useGetEnrollQuery();
@@ -22,12 +24,21 @@ const Enroll = () => {
       router.push("/admin/dashboard/enroll");
     }
   }, [isSuccess, toast]);
-  const enroll = React.useMemo(() => data, []);
 
-  const newData = new Date("2023-03-18T12:48:45.147Z");
+  const changeDate = (date) => {
+    const momentobj = moment(date);
+    const momentString = momentobj.format("YYYY-MM-DD");
+    return momentString;
+  };
 
   const columns = [
     { field: "_id", headerName: " ID", minWidth: 200, flex: 0.5 },
+    {
+      field: "SubmittedAt",
+      headerName: " SubmittedAt",
+      minWidth: 200,
+      flex: 0.5,
+    },
     {
       field: "FirstName",
       headerName: "FirstName",
@@ -109,11 +120,15 @@ const Enroll = () => {
       },
     },
   ];
+  {
+    console.log(data);
+  }
   const rows = [];
   data &&
     data?.enroll?.forEach((item) => {
       rows.push({
         _id: item?._id,
+        SubmittedAt: changeDate(item?.createdAt),
         FirstName: item?.firstname,
         LastName: item?.lastname,
         Email: item?.email,

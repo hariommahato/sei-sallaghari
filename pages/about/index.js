@@ -48,7 +48,7 @@ const About = ({ data }) => {
   );
 };
 export async function getServerSideProps() {
-  const about = await fetch(`http://localhost:3000/api/about`);
+  const about = await fetch(`https://sei-institute-sallaghari.vercel.app/api/about`);
   const data = await about.json();
 
   return { props: { data } };

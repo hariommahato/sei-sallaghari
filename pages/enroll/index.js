@@ -22,7 +22,7 @@ const Enroll = () => {
     course: "",
   });
   const [images, setImages] = useState("/favicon.io");
-  const [imagePreview, setImagePreview] = useState("/favicon.io");
+  const [imagePreview, setImagePreview] = useState("/logo.png");
   const { firstname, lastname, email, number, school, course } = enrollData;
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Enroll = () => {
       toast.success("Detail Submitted  Successfully");
       router.push("/");
     }
-  });
+  },[isSuccess]);
   console.log(isLoading, isError, isSuccess);
   const submitHandler = (e) => {
     e.preventDefault();
@@ -56,6 +56,7 @@ const Enroll = () => {
       toast.error("Image Cannot Be Empty");
     }
     const data = { firstname, lastname, email, number, school, course, images };
+    console.log(data)
 
     createEnroll(data);
   };
@@ -93,7 +94,7 @@ const Enroll = () => {
                 <AiOutlineMail />{" "}
                 <span className="mx-1">seieducationalinstitute@gmail.com</span>
               </h6>
-              <h5>Fill out the form, we'd get you back soon</h5>
+              <h5 style={{color:"red"}}>Fill out the form, we'd get you back soon</h5>
             </div>
 
             <div className={styles.formContainer}>
@@ -174,21 +175,15 @@ const Enroll = () => {
                   </Form.Select>
                 </div>
                 <div className="my-3">
+                  <Form.Label>Please Select your image</Form.Label>
                   <Form.Control type="file" name="images" onChange={onChange} />
                 </div>
                 <div>
                   <Image
                     src={imagePreview}
-                    alt="Image"
-                    width={100}
-                    height={100}
-                    className="my-3"
-                  />
-                  <Image
-                    src={images}
-                    alt="Image"
-                    width={100}
-                    height={100}
+                    alt="Your Image"
+                    width={50}
+                    height={50}
                     className="my-3"
                   />
                 </div>
