@@ -72,7 +72,7 @@ const Routine = ({ data }) => {
 };
 
 export async function getServerSideProps() {
-  const routine = await fetch(`http://localhost:3000/api/routine`);
+  const routine = await fetch(`https://sei-institute-sallaghari.vercel.app/api/routine`);
   const data = await routine.json();
 
   return { props: { data } };

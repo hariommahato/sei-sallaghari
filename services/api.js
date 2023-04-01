@@ -3,7 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 export const seiApi = createApi({
   reducerPath: "seiApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api",
+    baseUrl: "https://sei-institute-sallaghari.vercel.app/api",
   }),
   tagTypes: [
     "Enroll",

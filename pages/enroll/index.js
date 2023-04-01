@@ -157,10 +157,10 @@ const Enroll = () => {
                   >
                     <option>Select Course</option>
                     <option value="Advanced Sciemce Classes">
-                      Advanced Sciemce Classes{" "}
+                      Advanced Science Classes{" "}
                     </option>
                     <option value="Staff Nurese/HA/Lab/Pharmayc">
-                      Staff Nurese/HA/Lab/Pharmayc
+                      Staff Nurese/HA/Lab/Pharmacy
                     </option>
                     <option value="Management Course">Management Course</option>
                     <option value="All Level Computer Course">
