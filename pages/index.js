@@ -58,8 +58,6 @@ function MyVerticallyCenteredModal(props) {
         <title>SEI INSTITUTE SALLAGHARI</title>
         <meta name="description" content="SEI(One of the best institute in the town)" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2954870049763066"
-     crossorigin="anonymous"></script>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
