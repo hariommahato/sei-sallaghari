@@ -8,7 +8,7 @@ handler.get(getResultDetails).put(updateResult).delete(deleteResult);
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '1000mb' // Set desired value here
+            sizeLimit: '10000000mb' // Set desired value here
         }
     }
   }

@@ -8,7 +8,7 @@ handler.get(getEnrollDetails).put(updateEnroll).delete(deleteEnroll);
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '1000mb' // Set desired value here
+            sizeLimit: '10000000mb' // Set desired value here
         }
     }
   }

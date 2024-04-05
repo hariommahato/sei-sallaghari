@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import HomeCarousel from "@/frontend/components/Carousel";
@@ -25,11 +26,11 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>ADMISSION OPEN FOR BRIDGE COURSE 2080 BS</h4>
+        <h4>ADMISSION OPEN FOR BRIDGE COURSE 2081 BS</h4>
         <p style={{ color: "Red" }}>BOOK YOUR SEAT NOW.......</p>
         <div>
           <div>
-            <p>DISCOUNT VALID FROM "CHAITRA 17 - CHAITRA 30" ONLY</p>
+            <p>DISCOUNT VALID FROM  "CHAITRA 27 - BAISAKH 5" ONLY</p>
             <ul>
               <li>A+ Full SCholarship</li>
               <li>A 50% SCholarship</li>
@@ -46,7 +47,7 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
- function Home({data}) {
+function Home({ data }) {
   const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
@@ -56,7 +57,10 @@ function MyVerticallyCenteredModal(props) {
     <>
       <Head>
         <title>SEI INSTITUTE SALLAGHARI</title>
-        <meta name="description" content="SEI(One of the best institute in the town)" />
+        <meta
+          name="description"
+          content="SEI(One of the best institute in the town)"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -71,8 +75,8 @@ function MyVerticallyCenteredModal(props) {
           show={modalShow}
           onHide={() => setModalShow(false)}
         />
-        <HomeCarousel data={data}/>
-        
+        <HomeCarousel data={data} />
+
         <ChooseUs />
         <OurServices />
         <SeiMap />
@@ -81,11 +85,12 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 export async function getServerSideProps() {
-  
-  const carousel = await fetch(`https://sei-institute-sallaghari.vercel.app/api/carousel`)
-  const data = await carousel.json()
+  const carousel = await fetch(
+    `https://sei-institute-sallaghari.vercel.app/api/carousel`
+  );
+  const data = await carousel.json();
 
-  return { props: { data } }
+  return { props: { data } };
 }
 
-export default Home
+export default Home;

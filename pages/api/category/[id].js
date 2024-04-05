@@ -11,7 +11,7 @@ handler.get(getCategoryDetails).put(updateCategory).delete(deleteCategory);
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "1000mb", // Set desired value here
+      sizeLimit: "10000000mb", // Set desired value here
     },
   },
 };

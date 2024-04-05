@@ -8,7 +8,7 @@ handler.get(getRoutineDetails).put(updateRoutine).delete(deleteRoutine);
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '1000mb' // Set desired value here
+            sizeLimit: '10000000mb' // Set desired value here
         }
     }
   }

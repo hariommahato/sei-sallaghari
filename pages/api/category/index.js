@@ -9,7 +9,7 @@ handler.post(createCategory).get(getAllCategory);
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '1000mb' // Set desired value here
+            sizeLimit: '10000000mb' // Set desired value here
         }
     }
   }
