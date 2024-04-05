@@ -92,3 +92,9 @@ export default Login;
 Login.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
+
+
+
+// export { default } from "next-auth/middleware"
+
+// export const config = { matcher: ["/admin/dashboard"] }
