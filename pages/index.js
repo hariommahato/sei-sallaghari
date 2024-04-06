@@ -30,7 +30,7 @@ function MyVerticallyCenteredModal(props) {
         <p style={{ color: "Red" }}>BOOK YOUR SEAT NOW.......</p>
         <div>
           <div>
-            <p>DISCOUNT VALID FROM  "CHAITRA 13 - CHAIRTRA 30" ONLY</p>
+            <p>DISCOUNT VALID FROM  "CHAITRA 13 -- CHAIRTRA 30" ONLY</p>
             <ul>
               <li>A+ Full SCholarship</li>
               <li>A 50% SCholarship</li>
