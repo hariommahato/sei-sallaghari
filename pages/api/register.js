@@ -6,3 +6,4 @@ const handler = nextConnect();
 dbConnect();
 handler.post(registerUser);
 export default handler;
+ 
